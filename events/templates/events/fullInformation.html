@@ -1,0 +1,21 @@
+
+{% extends "events/base.html"%}
+{% block content %}
+  <div class="media content-section">
+    <div class="media-body">
+      <div class="article-metadata">  
+        <h5>{{ event.title }}</h5> 
+      </div>    
+      <div>
+        <p>{{ event.author }}</p>
+        <p>{{ event.date| date:"F d Y" }}</p>
+        <p class="article-content text-truncate">{{ event.content }}</p>
+      </div>
+      <form method="POST" action="{% url 'event-information' event.id %}">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Register</button>
+      </form>
+    </div>      
+  </div>        
+{% endblock content %}  

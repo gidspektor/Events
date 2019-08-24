@@ -1,0 +1,24 @@
+
+{% extends "events/base.html"%}
+{% block content %}
+  {% for event in events %}
+    {% if event.published == 1 %}
+      <div class="content-section">
+        <div class="media-body">
+          <div class="article-metadata">  
+            <h5>{{ event.title }}</h5> 
+          </div>    
+          <div>
+            <p>{{ event.author }}</p>
+            <p>{{ event.date| date:"F d Y" }}</p>
+            <p class="article-content truncater">{{ event.content }}</p>
+          </div>
+          <a class="col-md-2 btn btn-primary text-uppercase"
+            href="{% url 'event-information' event.id %}">
+            More info
+          </a>
+        </div>      
+      </div>
+    {% endif %} 
+  {% endfor %}
+{% endblock content %}
