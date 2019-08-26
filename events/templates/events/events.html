@@ -1,5 +1,6 @@
 
 {% extends "events/base.html"%}
+{% load i18n %}
 {% block content %}
   {% for event in events %}
     {% if event.published == 1 %}
@@ -15,9 +16,9 @@
           </div>
           <a class="col-md-2 btn btn-primary text-uppercase"
             href="{% url 'event-information' event.id %}">
-            More info
+            {% trans 'More info' %}
           </a>
-        </div>      
+        </div>
       </div>
     {% endif %} 
   {% endfor %}

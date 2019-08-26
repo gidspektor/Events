@@ -1,5 +1,6 @@
 
 {% extends "events/base.html"%}
+{% load i18n crispy_forms_tags %}
 {% block content %}
   <div class="media content-section">
     <div class="media-body">
@@ -9,12 +10,13 @@
       <div>
         <p>{{ event.author }}</p>
         <p>{{ event.date| date:"F d Y" }}</p>
-        <p class="article-content text-truncate">{{ event.content }}</p>
+        <p class="article-content">{{event.content }}</p>
       </div>
       <form method="POST" action="{% url 'event-information' event.id %}">
         {% csrf_token %}
-        {{ form }}
-        <button type="submit">Register</button>
+        {{ user_form|crispy }}
+        {{ comments_form|crispy }}
+        <button type="submit">{% trans 'Register' %}</button>
       </form>
     </div>      
   </div>        
